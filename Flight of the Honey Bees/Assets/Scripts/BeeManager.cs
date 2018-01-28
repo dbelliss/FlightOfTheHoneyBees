@@ -9,17 +9,8 @@ public class BeeManager : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	void FixedUpdate() {
-	}
-
-
-	void ReadInput() {
-		
+	public static bool TakeDamage(float damage) {
+		return bees [curBee].GetComponent<Bee> ().TakeDamage (damage);
 	}
 }

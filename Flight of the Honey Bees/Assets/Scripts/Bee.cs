@@ -10,9 +10,9 @@ public class Bee : MonoBehaviour {
 	[SerializeField]
 	float speed = 1; // Speed of bee
 	[SerializeField]
-	int curHP = 1; // Health of bee
+	float curHP = 2; // Health of bee
 	[SerializeField]
-	int maxHP = 1; // Health of bee
+	float maxHP = 2; // Health of bee
 
 	[SerializeField]
 	static float beginIdleRange = 1f; // How close before idling
@@ -129,12 +129,12 @@ public class Bee : MonoBehaviour {
 				// Move down
 
 				rb.velocity = Vector2.down * speed * idleFactor;
-				Debug.Log ("Setting velocity to " + rb.velocity.ToString ());
+//				Debug.Log ("Setting velocity to " + rb.velocity.ToString ());
 			}
 			// If far below pivot, change velocity
 			else if (transform.position.y < pivot.y - idleMovementRange){
 				rb.velocity = Vector2.up * speed * idleFactor;
-				Debug.Log ("Setting velocity to " + rb.velocity.ToString ());
+//				Debug.Log ("Setting velocity to " + rb.velocity.ToString ());
 			}
 		}
 	}
@@ -149,5 +149,15 @@ public class Bee : MonoBehaviour {
 
 	bool WasKeyPressed(string keyString) {
 		return Input.GetKey(keyString);
+	}
+
+	public bool TakeDamage(float damage) {
+		Debug.Log ("Bee " + beeNumber.ToString () + " took " + damage.ToString() + " damage");
+		curHP -= damage;
+		if (curHP < 0) {
+			Debug.Log ("Bee " + beeNumber.ToString () + " is dead :C");
+			return true;
+		}
+		return false;
 	}
 }
