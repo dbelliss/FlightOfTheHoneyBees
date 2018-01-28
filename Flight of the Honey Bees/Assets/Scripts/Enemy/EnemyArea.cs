@@ -24,8 +24,10 @@ public class EnemyArea : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		foreach (GameObject enemy in enemies) {
-			enemy.GetComponent<Enemy> ().isActive = false;
+		if (col.gameObject.tag == "Player") {
+			foreach (GameObject enemy in enemies) {
+				enemy.GetComponent<Enemy> ().isActive = false;
+			}
 		}
 	}
 }

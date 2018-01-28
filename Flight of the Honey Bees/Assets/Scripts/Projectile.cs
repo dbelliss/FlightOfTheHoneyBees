@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Leaf") {
-			Destroy (col.gameObject);
+			col.gameObject.GetComponent<Leaf> ().TakeDamage ();
 			Destroy (this.gameObject);
 		}
 		else if (col.gameObject.tag == "Enemy") {
