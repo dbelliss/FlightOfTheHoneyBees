@@ -6,7 +6,7 @@ public class Bee : MonoBehaviour {
 	[SerializeField]
 	int beeNumber; // Bee number
 	[SerializeField]
-	string name = "Blank"; // Bee name
+	string beeName = "Blank"; // Bee name
 	[SerializeField]
 	float speed = 1; // Speed of bee
 	[SerializeField]
@@ -50,31 +50,19 @@ public class Bee : MonoBehaviour {
 
 
 
-	void DeactivateBee() {
+	public void DeactivateBee() {
 		bc.enabled = false; // Disable collision
 		sr.color = nonMainColor; // Add grey tint
 	}
 
-	void ActivateBee() {
+	public void ActivateBee() {
 		bc.enabled = true; // Enable collision
 		sr.color = Color.white; // Reset color
 	}
 
 	// Update is called once per frame
 	void Update () {
-		ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
-	}
-
-	void ReadSwap() {
-		if (WasKeyPressed("1")) {
-			BeeManager.curBee = 0;
-		}
-		else if (WasKeyPressed("2")) {
-			BeeManager.curBee = 1;
-		}
-		else if (WasKeyPressed("3")) {
-			BeeManager.curBee = 2;
-		}
+		BeeManager.ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
 	}
 
 	void FixedUpdate() {
@@ -147,9 +135,6 @@ public class Bee : MonoBehaviour {
 
 
 
-	bool WasKeyPressed(string keyString) {
-		return Input.GetKey(keyString);
-	}
 
 	public bool TakeDamage(float damage) {
 		Debug.Log ("Bee " + beeNumber.ToString () + " took " + damage.ToString() + " damage");
@@ -159,5 +144,17 @@ public class Bee : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	public float GetCurHealth() {
+		return curHP;
+	}
+
+	public float GetMaxHealth() {
+		return maxHP;
+	}
+
+	public string GetName() {
+		return beeName;
 	}
 }
