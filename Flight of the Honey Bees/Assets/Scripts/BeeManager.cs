@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BeeManager : MonoBehaviour {
-	public static int curBee = 0;
-	public static GameObject[] bees;
-	public static int numBees = 3;
+	public static BeeManager beeManager;
+	public int curBee = 0;
+	public GameObject[] bees;
+	public int numBees = 3;
 
-	public static Text[] beeNames;
-	public static Image[] beeImages;
-	public static Text[] beeHealths;
+	public Text[] beeNames;
+	public Image[] beeImages;
+	public Text[] beeHealths;
+
+	public Sprite blankSprite;
 
 	void Awake() {
+		beeManager = this;
 		bees = new GameObject[numBees];
 		beeNames = new Text[numBees];
 		beeImages = new Image[numBees];
@@ -30,17 +35,23 @@ public class BeeManager : MonoBehaviour {
 		UpdateUI (); // Get correct health values
 	}
 
-	public static bool TakeDamage(float damage) {
+	public bool TakeDamage(float damage) {
 		Bee bee = bees [curBee].GetComponent<Bee> ();
 		bool isKilled = bee.TakeDamage (damage);
 		UpdateUI ();
 		return isKilled;
 	}
 
-	public static void UpdateUI() {
+	public void UpdateUI() {
 		// Change order of pictures
 		// Change order of health
 		for (int i = 0; i < numBees; i++) {
+			if (bees[i] == null) {
+				beeNames [i].text = "";
+				beeHealths [i].text = "";
+				beeImages [i].sprite = blankSprite;
+				continue;
+			}
 			Bee b = bees [i].GetComponent<Bee> ();
 			float curHP = b.GetCurHealth ();
 			float maxHP = b.GetMaxHealth ();
@@ -57,7 +68,7 @@ public class BeeManager : MonoBehaviour {
 	}
 
 	// Swaps bees based on input
-	public static void ReadSwap() {
+	public void ReadSwap() {
 		if (WasKeyPressed("1") && curBee != 0) {
 			SwapBees (0);
 		}
@@ -69,21 +80,52 @@ public class BeeManager : MonoBehaviour {
 		}
 	}
 
-	static void SwapBees(int swapTo) {
+	public void DeadBee(int deadNum) {
+		for (int i = 0; i < numBees; i++) {
+			if (i == deadNum) {
+				continue;
+			}
+			if (bees[i] != null) {
+				SwapBees (i);
+				bees [deadNum] = null;
+				UpdateUI ();
+				return;
+			}
+		}
+		SceneManager.LoadScene ("Loss"); // No bees left
+	}
+
+	public void GatherBee(GameObject newBee) {
+		for (int i = 0; i < numBees; i++) {
+			if (bees[i] == null) {
+				newBee.GetComponent<Bee> ().SetBeeNum (i);
+				bees [i] = newBee;
+				UpdateUI ();
+				return;
+			}
+		}
+		newBee.GetComponent<Bee> ().SetBeeNum (0);
+		bees [0] = newBee;
+		UpdateUI ();
+	}
+
+	void SwapBees(int swapTo) {
+		// Do not swap if dead
+		if (bees[swapTo] == null) {
+			return;
+		}
 		Vector2 playerPosition = bees [curBee].transform.position;
 		bees [curBee].transform.position = bees [swapTo].transform.position;
 		bees [swapTo].transform.position = playerPosition;
 		bees [curBee].GetComponent<Bee> ().DeactivateBee ();
-		BeeManager.curBee = swapTo;
+		BeeManager.beeManager.curBee = swapTo;
 		bees [curBee].GetComponent<Bee> ().ActivateBee ();
 
 		UpdateUI ();
 	}
 
 
-	static bool WasKeyPressed(string keyString) {
+	bool WasKeyPressed(string keyString) {
 		return Input.GetKey(keyString);
 	}
-
-
 }

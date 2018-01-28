@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212809218704908934}
   - component: {fileID: 50893270406001520}
   - component: {fileID: 61003375035193362}
-  - component: {fileID: 114128811743248326}
   - component: {fileID: 95211028422782814}
   - component: {fileID: 114011960960363346}
   m_Layer: 0
@@ -126,22 +125,6 @@ MonoBehaviour:
   projectile: {fileID: 1641721898010840, guid: f24aa80918623482ca8bce1f16ef0b4d, type: 2}
   spawnDistance: {x: 0.5, y: -0.5, z: 0}
   cooldown: 1
---- !u!114 &114128811743248326
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1278477594559844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05069712cf67944d393e5c6284e70ef6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beeNumber: 1
-  beeName: NA Mason Bee
-  speed: 4
-  curHP: 3
-  maxHP: 3
 --- !u!212 &212809218704908934
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class Axolotl : Enemy {
 		if (!isActive) {
 			return;
 		}
-		GameObject bee = BeeManager.bees [BeeManager.curBee];
+		GameObject bee = BeeManager.beeManager.bees [BeeManager.beeManager.curBee];
 		float distance = (bee.transform.position - this.transform.position).magnitude;
 		if (distance < detectionRange) {
 			curCooldown -= Time.fixedDeltaTime;
@@ -42,7 +42,7 @@ public class Axolotl : Enemy {
 	}
 
 	void Jump() {
-		GameObject bee = BeeManager.bees [BeeManager.curBee];
+		GameObject bee = BeeManager.beeManager.bees [BeeManager.beeManager.curBee];
 		Vector2 jumpDirection = (bee.transform.position - this.transform.position).normalized;
 		rb.AddForce (jumpDirection * jumpForce);
 	}

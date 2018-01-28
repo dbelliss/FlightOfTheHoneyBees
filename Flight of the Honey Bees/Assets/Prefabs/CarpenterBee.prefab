@@ -121,7 +121,7 @@ MonoBehaviour:
   beeName: Sonoran Carpenter Bee
   speed: 3
   curHP: 4
-  maxHP: 2
+  maxHP: 4
   projectile: {fileID: 1581907128605110, guid: 0d0fb5a1cc5934f17bcca01db94154ed, type: 2}
   spawnDistance: {x: 0.5, y: -0.5, z: 0}
   cooldown: 1

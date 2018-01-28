@@ -42,8 +42,8 @@ public class Bee : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
 		sr = GetComponent<SpriteRenderer> ();
-		BeeManager.bees [beeNumber] = this.gameObject;
-		if (beeNumber != BeeManager.curBee) {
+		BeeManager.beeManager.bees [beeNumber] = this.gameObject;
+		if (beeNumber != BeeManager.beeManager.curBee) {
 			DeactivateBee ();
 		}
 	}
@@ -62,11 +62,11 @@ public class Bee : MonoBehaviour {
 
 	// Update is called once per frame
 	protected void Update () {
-		BeeManager.ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
+		BeeManager.beeManager.ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
 	}
 
 	protected void FixedUpdate() {
-		if (BeeManager.curBee == this.beeNumber) {
+		if (BeeManager.beeManager.curBee == this.beeNumber) {
 			ReadInput ();
 		}
 		else {
@@ -76,9 +76,9 @@ public class Bee : MonoBehaviour {
 
 	// Follow the main bee
 	void FollowPlayer() {
-		int toFollowNum = (1 + this.beeNumber) % BeeManager.numBees;
+		int toFollowNum = (1 + this.beeNumber) % BeeManager.beeManager.numBees;
 
-		GameObject toFollow = BeeManager.bees [toFollowNum];
+		GameObject toFollow = BeeManager.beeManager.bees [toFollowNum];
 		Vector2 vectorDistance = toFollow.transform.position - gameObject.transform.position;
 		float floatDistance = vectorDistance.magnitude;
 		// If not in idle range, continue to get close to cur bee
@@ -137,10 +137,11 @@ public class Bee : MonoBehaviour {
 
 
 	public bool TakeDamage(float damage) {
-		Debug.Log ("Bee " + beeNumber.ToString () + " took " + damage.ToString() + " damage");
 		curHP -= damage;
-		if (curHP < 0) {
+		if (curHP <= 0) {
 			Debug.Log ("Bee " + beeNumber.ToString () + " is dead :C");
+			BeeManager.beeManager.DeadBee (beeNumber);
+			Destroy (this.gameObject);
 			return true;
 		}
 		return false;
@@ -156,5 +157,9 @@ public class Bee : MonoBehaviour {
 
 	public string GetName() {
 		return beeName;
+	}
+
+	public void SetBeeNum(int num) {
+		beeNumber = num;
 	}
 }

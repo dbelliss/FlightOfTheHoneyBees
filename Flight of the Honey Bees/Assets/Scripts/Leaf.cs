@@ -16,7 +16,7 @@ public class Leaf : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Player") {
-			BeeManager.TakeDamage (damage);
+			BeeManager.beeManager.TakeDamage (damage);
 		}
 	}
 

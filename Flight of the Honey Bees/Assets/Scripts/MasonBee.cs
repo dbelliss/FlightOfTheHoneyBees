@@ -25,7 +25,7 @@ public class MasonBee : Bee {
 	new void FixedUpdate() {
 		base.FixedUpdate ();
 		curCooldown -= Time.fixedDeltaTime;
-		if (BeeManager.curBee == beeNumber) {
+		if (BeeManager.beeManager.curBee == beeNumber) {
 			Shoot ();
 		}
 	}

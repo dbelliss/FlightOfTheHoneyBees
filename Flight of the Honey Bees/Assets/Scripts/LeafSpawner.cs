@@ -26,7 +26,7 @@ public class LeafSpawner : MonoBehaviour {
 	IEnumerator SpawnLeaf() {
 		while (true) {
 			float spawnPositionX = Random.Range (-1f, 1f);
-			Vector2 spawnPosition = new Vector2 (this.transform.position.x + spawnPositionX * bc.bounds.size.x, this.transform.position.y);
+			Vector2 spawnPosition = new Vector2 (this.transform.position.x + spawnPositionX * bc.bounds.size.x/2, this.transform.position.y);
 			Instantiate (leaf, spawnPosition, Quaternion.identity);
 			yield return new WaitForSeconds(spawnIntervals);
 		}
