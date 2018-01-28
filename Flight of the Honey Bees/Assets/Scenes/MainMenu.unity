@@ -1515,9 +1515,9 @@ MonoBehaviour:
   realEUHoneyBee: {fileID: 21300000, guid: bc3cc19a8105347d7b6adcced1a4b5fb, type: 3}
   spriteGiantHoney: {fileID: 21300000, guid: 8374448654362499697e4b1a2b6247e0, type: 3}
   realGiantHoney: {fileID: 21300000, guid: a16219bc543b0451082b06363be57f49, type: 3}
-  spriteCarpenter: {fileID: 21300000, guid: 7e04c94232f7844bc863a24c09b5179c, type: 3}
+  spriteCarpenter: {fileID: 21300000, guid: b509a7501664e4dfab60f23f82729fb9, type: 3}
   realCarpenter: {fileID: 21300000, guid: 7e04c94232f7844bc863a24c09b5179c, type: 3}
-  spriteKiller: {fileID: 21300000, guid: 55e9dff4e77f6458fa4ecb3189a8e2cd, type: 3}
+  spriteKiller: {fileID: 21300000, guid: 63902d1d195004b919eedea0681194c1, type: 3}
   realKiller: {fileID: 21300000, guid: 55e9dff4e77f6458fa4ecb3189a8e2cd, type: 3}
   spriteJapaneseGiant: {fileID: 21300000, guid: 646cb03d47dc44788bdd0e9d0b2c2bd5,
     type: 3}
@@ -3187,7 +3187,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8374448654362499697e4b1a2b6247e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b509a7501664e4dfab60f23f82729fb9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5051,7 +5051,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 75dabf336d98640709019f4f2d56a767, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63902d1d195004b919eedea0681194c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
