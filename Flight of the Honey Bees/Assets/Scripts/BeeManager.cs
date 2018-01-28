@@ -47,9 +47,12 @@ public class BeeManager : MonoBehaviour {
 			beeHealths [i].text = curHP.ToString () + "/" + maxHP.ToString ();
 			beeNames [i].text = b.GetName ();
 			beeImages [i].sprite = bees [i].GetComponent<SpriteRenderer> ().sprite;
-//			if (i == curBee) {
-//				bees[i].GetComponent<RectTransform>().w
-//			}
+			if (i == curBee) {
+				GameObject.Find ("Bee" + i.ToString() + "Icon").GetComponent<RectTransform> ().sizeDelta = (new Vector2 (100, 100));
+			}
+			else {
+				GameObject.Find ("Bee" + i.ToString() + "Icon").GetComponent<RectTransform> ().sizeDelta = (new Vector2 (50, 50));
+			}
 		}
 	}
 
