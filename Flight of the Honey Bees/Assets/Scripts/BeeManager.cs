@@ -67,6 +67,10 @@ public class BeeManager : MonoBehaviour {
 		}
 	}
 
+	void Update() {
+		ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
+	}
+
 	// Swaps bees based on input
 	public void ReadSwap() {
 		if (WasKeyPressed("1") && curBee != 0) {
@@ -95,7 +99,7 @@ public class BeeManager : MonoBehaviour {
 		SceneManager.LoadScene ("Loss"); // No bees left
 	}
 
-	public void GatherBee(GameObject newBee) {
+	public void GatherBee(GameObject newBee, GameObject oldBee) {
 		for (int i = 0; i < numBees; i++) {
 			if (bees[i] == null) {
 				newBee.GetComponent<Bee> ().SetBeeNum (i);
@@ -104,9 +108,13 @@ public class BeeManager : MonoBehaviour {
 				return;
 			}
 		}
-		newBee.GetComponent<Bee> ().SetBeeNum (0);
-		bees [0] = newBee;
+		newBee.GetComponent<Bee> ().SetBeeNum (curBee);
+		newBee.GetComponent<Bee> ().isInParty = true;
+		oldBee.GetComponent<BoxCollider2D> ().isTrigger = true;
+		newBee.GetComponent<BoxCollider2D> ().isTrigger = false;
+		bees [curBee] = newBee;
 		UpdateUI ();
+		oldBee.GetComponent<Bee> ().isInParty = false;
 	}
 
 	void SwapBees(int swapTo) {

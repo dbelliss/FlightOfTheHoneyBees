@@ -33,15 +33,19 @@ public class Bee : MonoBehaviour {
 	private bool _isIdling = false;
 	private Vector2 _idlePosition; 
 	public static Color nonMainColor = new Color (.2f, .2f, .2f,.7f);
-
-	Rigidbody2D rb;
-	BoxCollider2D bc;
+	public bool isInParty = true;
+	protected Rigidbody2D rb;
+	protected BoxCollider2D bc;
 	SpriteRenderer sr;
 	// Use this for initialization
 	protected void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
 		sr = GetComponent<SpriteRenderer> ();
+		if (!isInParty) {
+			bc.isTrigger = true;
+			return;
+		}
 		BeeManager.beeManager.bees [beeNumber] = this.gameObject;
 		if (beeNumber != BeeManager.beeManager.curBee) {
 			DeactivateBee ();
@@ -62,10 +66,15 @@ public class Bee : MonoBehaviour {
 
 	// Update is called once per frame
 	protected void Update () {
-		BeeManager.beeManager.ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
+		if (!isInParty) {
+			return;
+		}
 	}
 
 	protected void FixedUpdate() {
+		if (!isInParty) {
+			return;
+		}
 		if (BeeManager.beeManager.curBee == this.beeNumber) {
 			ReadInput ();
 		}
@@ -77,7 +86,9 @@ public class Bee : MonoBehaviour {
 	// Follow the main bee
 	void FollowPlayer() {
 		int toFollowNum = (1 + this.beeNumber) % BeeManager.beeManager.numBees;
-
+		while (BeeManager.beeManager.bees[toFollowNum] == null) {
+			toFollowNum = (1 + toFollowNum) % BeeManager.beeManager.numBees;
+		}
 		GameObject toFollow = BeeManager.beeManager.bees [toFollowNum];
 		Vector2 vectorDistance = toFollow.transform.position - gameObject.transform.position;
 		float floatDistance = vectorDistance.magnitude;
@@ -161,5 +172,11 @@ public class Bee : MonoBehaviour {
 
 	public void SetBeeNum(int num) {
 		beeNumber = num;
+	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.tag == "Player" && isInParty) {
+			BeeManager.beeManager.GatherBee (col.gameObject,this.gameObject);
+		}
 	}
 }

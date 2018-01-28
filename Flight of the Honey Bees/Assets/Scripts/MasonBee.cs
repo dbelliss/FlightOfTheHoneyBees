@@ -19,10 +19,16 @@ public class MasonBee : Bee {
 	
 	// Update is called once per frame
 	new void Update () {
+		if (!isInParty) {
+			return;
+		}
 		base.Update ();
 	}
 
 	new void FixedUpdate() {
+		if (!isInParty) {
+			return;
+		}
 		base.FixedUpdate ();
 		curCooldown -= Time.fixedDeltaTime;
 		if (BeeManager.beeManager.curBee == beeNumber) {
