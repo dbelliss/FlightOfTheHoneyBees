@@ -48,7 +48,7 @@ public class BeeManager : MonoBehaviour {
 			beeNames [i].text = b.GetName ();
 			beeImages [i].sprite = bees [i].GetComponent<SpriteRenderer> ().sprite;
 			if (i == curBee) {
-				GameObject.Find ("Bee" + i.ToString() + "Icon").GetComponent<RectTransform> ().sizeDelta = (new Vector2 (100, 100));
+				GameObject.Find ("Bee" + i.ToString() + "Icon").GetComponent<RectTransform> ().sizeDelta = (new Vector2 (75, 75));
 			}
 			else {
 				GameObject.Find ("Bee" + i.ToString() + "Icon").GetComponent<RectTransform> ().sizeDelta = (new Vector2 (50, 50));
@@ -70,9 +70,13 @@ public class BeeManager : MonoBehaviour {
 	}
 
 	static void SwapBees(int swapTo) {
+		Vector2 playerPosition = bees [curBee].transform.position;
+		bees [curBee].transform.position = bees [swapTo].transform.position;
+		bees [swapTo].transform.position = playerPosition;
 		bees [curBee].GetComponent<Bee> ().DeactivateBee ();
 		BeeManager.curBee = swapTo;
 		bees [curBee].GetComponent<Bee> ().ActivateBee ();
+
 		UpdateUI ();
 	}
 
