@@ -28,7 +28,7 @@ public class Axolotl : Enemy {
 		if (!isActive) {
 			return;
 		}
-		if (4 == BeeManager.beeManager.numBees) {
+		if (4 == BeeManager.beeManager.numBees || BeeManager.beeManager.bees[BeeManager.beeManager.curBee] == null) {
 			return;
 		} // Killer bee
 		GameObject bee = BeeManager.beeManager.bees [BeeManager.beeManager.curBee];
