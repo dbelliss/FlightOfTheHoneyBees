@@ -28,6 +28,9 @@ public class Axolotl : Enemy {
 		if (!isActive) {
 			return;
 		}
+		if (4 == BeeManager.beeManager.numBees) {
+			return;
+		} // Killer bee
 		GameObject bee = BeeManager.beeManager.bees [BeeManager.beeManager.curBee];
 		float distance = (bee.transform.position - this.transform.position).magnitude;
 		if (distance < detectionRange) {

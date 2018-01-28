@@ -175,7 +175,18 @@ public class Bee : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "Player" && isInParty) {
+		Bee b = col.GetComponent<Bee> ();
+		if (b) {
+			if (b.name == "African Killer Bee") {
+				return;
+			}
+		}
+		if (beeName == "African Killer Bee") {
+			if (col.gameObject.tag == "Player" && !isInParty) {
+				BeeManager.beeManager.StartKillerBee (this.gameObject);
+			}
+		}
+		else if (col.gameObject.tag == "Player" && isInParty) {
 			BeeManager.beeManager.GatherBee (col.gameObject,this.gameObject);
 		}
 	}

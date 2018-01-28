@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class BeeManager : MonoBehaviour {
 	public static BeeManager beeManager;
 	public int curBee = 0;
-	public GameObject[] bees;
+	public List<GameObject> bees;
 	public int numBees = 3;
 
 	public Text[] beeNames;
@@ -18,7 +18,11 @@ public class BeeManager : MonoBehaviour {
 
 	void Awake() {
 		beeManager = this;
-		bees = new GameObject[numBees];
+		bees = new List<GameObject> ();
+		bees.Add (null);
+		bees.Add (null);
+		bees.Add (null);
+
 		beeNames = new Text[numBees];
 		beeImages = new Image[numBees];
 		beeHealths = new Text[numBees];
@@ -36,6 +40,9 @@ public class BeeManager : MonoBehaviour {
 	}
 
 	public bool TakeDamage(float damage) {
+		if (curBee > 3) {
+			return false;
+		}
 		Bee bee = bees [curBee].GetComponent<Bee> ();
 		bool isKilled = bee.TakeDamage (damage);
 		UpdateUI ();
@@ -103,6 +110,7 @@ public class BeeManager : MonoBehaviour {
 		for (int i = 0; i < numBees; i++) {
 			if (bees[i] == null) {
 				newBee.GetComponent<Bee> ().SetBeeNum (i);
+				newBee.GetComponent<Bee> ().isInParty = true;
 				bees [i] = newBee;
 				UpdateUI ();
 				return;
@@ -135,5 +143,31 @@ public class BeeManager : MonoBehaviour {
 
 	bool WasKeyPressed(string keyString) {
 		return Input.GetKey(keyString);
+	}
+
+	public void StartKillerBee(GameObject killerBee) {
+		killerBee.GetComponent<Bee> ().isInParty = true;
+		bees [curBee].GetComponent<Bee> ().DeactivateBee ();
+		bees.Add (killerBee);
+		curBee = 4;
+		numBees++;
+		killerBee.GetComponent<BoxCollider2D> ().isTrigger = false;
+		StartCoroutine (KillerBee(killerBee));
+
+	}
+
+	IEnumerator KillerBee(GameObject killerBee) {
+		yield return new WaitForSeconds (10f);
+		EndKillerBee (killerBee);
+	}
+
+	void EndKillerBee(GameObject killerBee) {
+		killerBee.GetComponent<Bee> ().isInParty = false;
+		numBees--;
+		bees.Remove (killerBee);
+		bees [0].transform.position = killerBee.transform.position;
+		bees [0].GetComponent<Bee> ().ActivateBee ();
+		killerBee.GetComponent<BoxCollider2D> ().enabled = false;
+		curBee = 0;
 	}
 }
