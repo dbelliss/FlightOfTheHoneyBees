@@ -32,14 +32,16 @@ public class Bee : MonoBehaviour {
 		
 	private bool _isIdling = false;
 	private Vector2 _idlePosition;
-
+	public static Color nonMainColor = new Color (50, 50, 50,.7f);
 
 	Rigidbody2D rb;
 	BoxCollider2D bc;
+	SpriteRenderer sr;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
+		sr = GetComponent<SpriteRenderer> ();
 		BeeManager.bees [beeNumber] = this.gameObject;
 		if (beeNumber != BeeManager.curBee) {
 			DeactivateBee ();
@@ -49,13 +51,13 @@ public class Bee : MonoBehaviour {
 
 
 	void DeactivateBee() {
-		bc.enabled = false;
-		Debug.Log ("Disabling bee " + beeNumber.ToString ());
+		bc.enabled = false; // Disable collision
+		sr.color = nonMainColor; // Add grey tint
 	}
 
 	void ActivateBee() {
-		bc.enabled = true;
-		
+		bc.enabled = true; // Enable collision
+		sr.color = Color.white; // Reset color
 	}
 
 	// Update is called once per frame
@@ -93,7 +95,6 @@ public class Bee : MonoBehaviour {
 		float floatDistance = vectorDistance.magnitude;
 		// If not in idle range, continue to get close to cur bee
 		Bee followBee = toFollow.GetComponent<Bee> ();
-		Debug.Log (floatDistance);
 		// If idling, leader must be farther away before following
 		if (isIdling) {
 			// Only break from idle is distance is greater than idle break
@@ -113,7 +114,6 @@ public class Bee : MonoBehaviour {
 		else {
 			float idleFactor = .5f;
 			if (!_isIdling) {
-				Debug.Log("Beginning to idle");
 				_isIdling = true;
 				rb.velocity = Vector2.down * speed; // Default to down
 				_idlePosition = transform.position; // Save position before idling
@@ -143,8 +143,6 @@ public class Bee : MonoBehaviour {
 
 	void ReadInput() {
 		rb.velocity = new Vector2 (Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed); // Move player based on input
-
-	
 	}
 
 
