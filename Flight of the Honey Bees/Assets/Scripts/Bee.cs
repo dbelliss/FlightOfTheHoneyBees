@@ -31,8 +31,8 @@ public class Bee : MonoBehaviour {
 	}
 		
 	private bool _isIdling = false;
-	private Vector2 _idlePosition;
-	public static Color nonMainColor = new Color (50, 50, 50,.7f);
+	private Vector2 _idlePosition; 
+	public static Color nonMainColor = new Color (.2f, .2f, .2f,.7f);
 
 	Rigidbody2D rb;
 	BoxCollider2D bc;
@@ -67,13 +67,13 @@ public class Bee : MonoBehaviour {
 
 	void ReadSwap() {
 		if (WasKeyPressed("1")) {
-			BeeManager.curBee = 1;
+			BeeManager.curBee = 0;
 		}
 		else if (WasKeyPressed("2")) {
-			BeeManager.curBee = 2;
+			BeeManager.curBee = 1;
 		}
 		else if (WasKeyPressed("3")) {
-			BeeManager.curBee = 3;
+			BeeManager.curBee = 2;
 		}
 	}
 
