@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 	[SerializeField]
+	public float levelEnd = 97;
+
+	[SerializeField]
 	float cameraSpeed = .05f;
 	// Use this for initialization
 	void Start () {
@@ -16,6 +19,8 @@ public class PlayerCamera : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		gameObject.transform.position += Vector3.right * cameraSpeed;
+		if (gameObject.transform.position.x < levelEnd) {
+			gameObject.transform.position += Vector3.right * cameraSpeed;
+		}
 	}
 }
