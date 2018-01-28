@@ -44,7 +44,6 @@ public class Axolotl : Enemy {
 	void Jump() {
 		GameObject bee = BeeManager.bees [BeeManager.curBee];
 		Vector2 jumpDirection = (bee.transform.position - this.transform.position).normalized;
-		Debug.Log (jumpDirection);
 		rb.AddForce (jumpDirection * jumpForce);
 	}
 
