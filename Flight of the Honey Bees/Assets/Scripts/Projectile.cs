@@ -7,6 +7,9 @@ public class Projectile : MonoBehaviour {
 	float speed = 1;
 	[SerializeField]
 	float damage;
+	[SerializeField]
+	float hp =1;
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
@@ -22,11 +25,17 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Leaf") {
 			col.gameObject.GetComponent<Leaf> ().TakeDamage ();
-			Destroy (this.gameObject);
+			hp--;
+			if (hp <= 0) {
+				Destroy (this.gameObject);
+			}
 		}
 		else if (col.gameObject.tag == "Enemy") {
 			col.gameObject.GetComponent<Enemy> ().TakeDamage (damage);
-			Destroy (this.gameObject);
+			hp--;
+			if (hp <= 0) {
+				Destroy (this.gameObject);
+			}
 		}
 	}
 }

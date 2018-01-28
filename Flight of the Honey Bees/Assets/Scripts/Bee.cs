@@ -150,7 +150,6 @@ public class Bee : MonoBehaviour {
 	public bool TakeDamage(float damage) {
 		curHP -= damage;
 		if (curHP <= 0) {
-			Debug.Log ("Bee " + beeNumber.ToString () + " is dead :C");
 			BeeManager.beeManager.DeadBee (beeNumber);
 			Destroy (this.gameObject);
 			return true;

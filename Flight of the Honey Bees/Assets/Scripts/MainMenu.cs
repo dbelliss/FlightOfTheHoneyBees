@@ -14,6 +14,10 @@ public class MainMenu : MonoBehaviour {
 	[SerializeField]
 	GameObject infoScreen;
 	[SerializeField]
+	GameObject credits;
+	[SerializeField]
+	GameObject disclaimer;
+	[SerializeField]
 	Text infoText;
 	[SerializeField]
 	Text statsText;
@@ -180,5 +184,25 @@ public class MainMenu : MonoBehaviour {
 	public void BackToTrivia() {
 		trivia.SetActive (true);
 		infoScreen.SetActive (false);
+	}
+
+	public void DisclaimerToMenu() {
+		disclaimer.SetActive (false);
+		titleScreen.SetActive (true);
+	}
+
+	public void MenuToDisclaimer() {
+		disclaimer.SetActive (true);
+		titleScreen.SetActive (false);
+	}
+
+	public void CreditsToMenu() {
+		credits.SetActive (false);
+		titleScreen.SetActive (true);
+	}
+
+	public void MenuToCredits() {
+		credits.SetActive (true);
+		titleScreen.SetActive (false);
 	}
 }
