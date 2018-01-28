@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bee : MonoBehaviour {
 	[SerializeField]
-	int beeNumber; // Bee number
+	protected int beeNumber; // Bee number
 	[SerializeField]
 	string beeName = "Blank"; // Bee name
 	[SerializeField]
@@ -38,7 +38,7 @@ public class Bee : MonoBehaviour {
 	BoxCollider2D bc;
 	SpriteRenderer sr;
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
 		sr = GetComponent<SpriteRenderer> ();
@@ -61,11 +61,11 @@ public class Bee : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 		BeeManager.ReadSwap(); // Read in fixed update because of how keys are detected frame by frame
 	}
 
-	void FixedUpdate() {
+	protected void FixedUpdate() {
 		if (BeeManager.curBee == this.beeNumber) {
 			ReadInput ();
 		}
