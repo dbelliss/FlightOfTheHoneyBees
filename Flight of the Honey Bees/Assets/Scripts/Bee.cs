@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bee : MonoBehaviour {
+
+	private static float timeLastHit = 0.0f;
+	private bool isInvicible = false;
+	[SerializeField]
+	private static float invincibilityTime = 2f;
 	[SerializeField]
 	protected int beeNumber; // Bee number
 	[SerializeField]
@@ -148,7 +153,11 @@ public class Bee : MonoBehaviour {
 
 
 	public bool TakeDamage(float damage) {
+		if (isInvicible) {
+			return false; // Do not allow damage in invincibility frames
+		}
 		curHP -= damage;
+		StartCoroutine (InvincibilityFrames ());
 		if (curHP <= 0) {
 			BeeManager.beeManager.DeadBee (beeNumber);
 			Destroy (this.gameObject);
@@ -188,5 +197,17 @@ public class Bee : MonoBehaviour {
 		else if (col.gameObject.tag == "Player" && isInParty) {
 			BeeManager.beeManager.GatherBee (col.gameObject,this.gameObject);
 		}
+	}
+
+	IEnumerator InvincibilityFrames() {
+		isInvicible = true;
+		timeLastHit = Time.time;
+		while (Time.time < timeLastHit + invincibilityTime) {
+			// Blink sprite while invincible
+			sr.enabled = !sr.enabled;
+			yield return new WaitForSeconds (.2f);	
+		}
+		isInvicible = false;
+		sr.enabled = true; // Set to visible
 	}
 }

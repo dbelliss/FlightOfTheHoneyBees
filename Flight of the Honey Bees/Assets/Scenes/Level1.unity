@@ -165,7 +165,7 @@ Prefab:
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
       propertyPath: speed
-      value: 4
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
@@ -412,7 +412,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.607956
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -449,7 +449,7 @@ Prefab:
     - target: {fileID: 114528067288162454, guid: 6293eb82190004e0183591b56887209a,
         type: 2}
       propertyPath: jumpForce
-      value: 400
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6293eb82190004e0183591b56887209a, type: 2}
@@ -478,7 +478,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.9897738
+      value: 16.86
       objectReference: {fileID: 0}
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -523,7 +523,7 @@ Prefab:
     - target: {fileID: 114528067288162454, guid: 6293eb82190004e0183591b56887209a,
         type: 2}
       propertyPath: jumpForce
-      value: 450
+      value: 650
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6293eb82190004e0183591b56887209a, type: 2}
@@ -822,6 +822,11 @@ Prefab:
       propertyPath: m_SortingLayer
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
+        type: 2}
+      propertyPath: speed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf3d672897bb54a1287315a6627642c6, type: 2}
   m_IsPrefabParent: 0
@@ -968,7 +973,7 @@ Prefab:
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
       propertyPath: speed
-      value: 6
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
@@ -1207,7 +1212,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.87
+      value: 9.42
       objectReference: {fileID: 0}
     - target: {fileID: 4828200177268620, guid: 6293eb82190004e0183591b56887209a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1252,7 +1257,7 @@ Prefab:
     - target: {fileID: 114528067288162454, guid: 6293eb82190004e0183591b56887209a,
         type: 2}
       propertyPath: jumpForce
-      value: 700
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6293eb82190004e0183591b56887209a, type: 2}
@@ -1597,7 +1602,7 @@ Prefab:
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
       propertyPath: speed
-      value: 3
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 114192773696591962, guid: cf3d672897bb54a1287315a6627642c6,
         type: 2}
@@ -2113,7 +2118,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1422267373
+  randomSeed: 1399296313
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5990,7 +5995,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2023589810
+  randomSeed: -1936551309
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10581,7 +10586,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2023589810
+  randomSeed: 1945067005
   InitialModule:
     serializedVersion: 3
     enabled: 1
