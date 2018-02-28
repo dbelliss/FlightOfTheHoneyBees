@@ -109,6 +109,7 @@ public class BeeManager : MonoBehaviour {
 	public void GatherBee(GameObject newBee, GameObject oldBee) {
 		for (int i = 0; i < numBees; i++) {
 			if (bees[i] == null) {
+				// Found empty spot to put a bee
 				newBee.GetComponent<Bee> ().SetBeeNum (i);
 				newBee.GetComponent<Bee> ().isInParty = true;
 				bees [i] = newBee;
@@ -116,9 +117,19 @@ public class BeeManager : MonoBehaviour {
 				return;
 			}
 		}
+		// Replace the current bee
 		newBee.GetComponent<Bee> ().SetBeeNum (curBee);
 		newBee.GetComponent<Bee> ().isInParty = true;
-		oldBee.GetComponent<BoxCollider2D> ().isTrigger = true;
+		ParticleSystem ps = newBee.GetComponent<ParticleSystem> ();
+		if (ps != null) {
+			// If there is a particle system, disable it
+			ParticleSystem.EmissionModule emissionMod = ps.emission;
+			emissionMod.enabled = false;
+		
+		}
+		oldBee.GetComponent<Rigidbody2D> ().velocity = (new Vector2 (0, 2));
+		oldBee.GetComponent<BoxCollider2D> ().enabled = false;
+		oldBee.GetComponent<Bee> ().enabled = false; // Disable the old bee
 		newBee.GetComponent<BoxCollider2D> ().isTrigger = false;
 		bees [curBee] = newBee;
 		UpdateUI ();
