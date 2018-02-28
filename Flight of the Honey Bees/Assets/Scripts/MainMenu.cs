@@ -69,6 +69,10 @@ public class MainMenu : MonoBehaviour {
 	Sprite realAxolotl;
 	[SerializeField]
 	Sprite realAxolotl2;
+	[SerializeField]
+	Sprite spriteBadger;
+	[SerializeField]
+	Sprite realBadger;
 	// Use this for initialization
 	void Start () {
 	}
@@ -171,6 +175,13 @@ public class MainMenu : MonoBehaviour {
 			spriteImage.sprite = spriteAxolotl;
 			realImage.sprite = realAxolotl;
 			secondRealImage.sprite = realAxolotl2;
+			break;
+		case "Badger":
+			temp = "A honey badger!";
+			stats = "Health: ∞\nDamage: 1\n";
+			spriteImage.sprite = spriteBadger;
+			realImage.sprite = realBadger;
+			secondRealImage.sprite = emptySprite;
 			break;
 		default:
 			temp = "None";
